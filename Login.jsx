@@ -4,10 +4,11 @@ import TextField from "@mui/material/TextField";
 import { FaRegCircleUser, FaKey } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import farmkit from "../Images/cover-image.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Login() {
+  const navigate = useNavigate(); // Initialize useNavigate hook
   const [formData, setFormData] = useState({
     username: "",
     password: ""
@@ -28,6 +29,7 @@ export default function Login() {
       if (response.status === 200 && response.data === "Login successful") {
         console.log("Login successful");
         alert("Login Successful")
+        navigate('/');
       } else {
         console.log("Invalid username or password");
       }
