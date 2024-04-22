@@ -1,0 +1,85 @@
+.product_des {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  max-height: 200px; /* Adjust the height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+th, td {
+  border: 3px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  min-width: 100px; /* Set a minimum width for columns */
+}
+
+th {
+  background-color: #f2f2f2;
+  color: black;
+}
+
+.photo {
+  margin-top: 20px;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  color: #000; /* Text color black */
+}
+
+/* Modal Header */
+.modal-header {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 20px;
+  color: #000; /* Text color black */
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 10px 20px;
+  background-color: #f7f7f7;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/* Button inside Modal Footer */
+.modal-footer button {
+  margin-right: 10px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Form Label */
+.form-label {
+  font-weight: bold;
+  color: #000000; /* Text color black */
+}
+
+/* Form Control */
+.form-control {
+  width: 100%;
+  color: #ffffff; /* Text color black */
+}
