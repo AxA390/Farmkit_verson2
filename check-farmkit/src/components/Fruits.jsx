@@ -10,7 +10,7 @@ import {
   FaPhone,
   FaChevronLeft,
   FaChevronRight,
-  FaFacebookMessenger,
+  // FaFacebookMessenger,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -52,7 +52,9 @@ function Fruits() {
     <div className="bg-[#a2fc0f] min-h-screen w-screen text-black relative flex flex-col">
       <div className="flex justify-between px-5 pl-20 pr-20 cursor-pointer text-4xl mt-8">
         <div className="home">
-          <AiFillHome />
+          <Link to="/">
+            <AiFillHome />
+          </Link>
         </div>
         <div className="flex items-center w-96">
           <button
@@ -99,9 +101,9 @@ function Fruits() {
           <h3>DAIRY PRODUCTS</h3>
           <FaAngleDown />
         </div>
-        <div className="text-3xl">
+        {/* <div className="text-3xl">
           <FaFacebookMessenger />
-        </div>
+        </div> */}
 
         <div className="phone flex items-center">
           <FaPhone /> <h5 className="pl-4">9800000000</h5>
@@ -145,7 +147,7 @@ function Fruits() {
         {foodCategories.map((category) => (
           <Link
             to={category.link}
-            key={category.id}   //
+            key={category.id} //
             className="w-40 h-56 bg-[#a2fc0f] rounded-2xl shadow text-center transition-transform duration-200 ease-in-out mb-8 overflow-hidden ml-2.5 cursor-pointer"
           >
             <div className="card-content">

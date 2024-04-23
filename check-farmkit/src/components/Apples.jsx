@@ -11,7 +11,7 @@ import { TiLocation } from "react-icons/ti";
 import {
   FaShoppingCart,
   FaAngleDown,
-  FaFacebookMessenger,
+  // FaFacebookMessenger,
   FaUser,
 } from "react-icons/fa";
 import Rating from "@mui/material/Rating";
@@ -85,7 +85,9 @@ function Apples() {
         </div>
         <div className="flex justify-between px-24 text-3xl mt-10 relative">
           <div className="home">
-            <AiFillHome />
+            <Link to="/">
+              <AiFillHome />
+            </Link>
           </div>
           <div className="flex items-center w-96">
             <button
@@ -116,8 +118,10 @@ function Apples() {
         </div>
         <div className="flex justify-evenly items-center font-extrabold py-5 cursor-pointer mt-8">
           <div className="fruits flex items-center">
-            <h3>FRUITS</h3>
-            <FaAngleDown />
+            <Link to="/fruits">
+              <h3>FRUITS</h3>
+              <FaAngleDown />
+            </Link>
           </div>
           <div className="vegetable flex items-center">
             <h3>VEGETABLES</h3>
@@ -131,9 +135,9 @@ function Apples() {
             <h3>DAIRY PRODUCTS</h3>
             <FaAngleDown />
           </div>
-          <div className="text-3xl">
+          {/* <div className="text-3xl">
             <FaFacebookMessenger />
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -145,46 +149,6 @@ function Apples() {
               alt="appleimage"
               className="w-full h-full object-cover object-center"
             />
-          </div>
-
-          <div className="h-96 text-center w-80 border-2 border-black rounded-2xl flex flex-col justify-center items-center">
-            <div className="star-row mt-3 flex justify-center">
-              {" "}
-              {/* Added justify-center to center the stars */}
-              <Stack spacing={1}>
-                <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
-              </Stack>
-            </div>
-            <div className="flex mt-3">
-              <div className="h-12 w-12 rounded-full bg-white"></div>
-              <div className="information ml-4">
-                <p className="detail-info w-4/6">Lorem ipsum dolor sit amet.</p>
-              </div>
-            </div>
-            <div className="flex mt-3">
-              <div className="h-12 w-12 rounded-full bg-white"></div>
-              <div className="information ml-4">
-                <p className="detail-info w-4/6">Lorem ipsum dolor sit amet.</p>
-              </div>
-            </div>
-            <div className="flex mt-3">
-              <div className="h-12 w-12 rounded-full bg-white"></div>
-              <div className="information ml-4">
-                <p className="detail-info w-4/6">Lorem ipsum dolor sit amet.</p>
-              </div>
-            </div>
-            <div className="flex mt-3">
-              <div className="h-12 w-12 rounded-full bg-white"></div>
-              <div className="information ml-4">
-                <p className="detail-info w-4/6">Lorem ipsum dolor sit amet.</p>
-              </div>
-            </div>
-            <div className="flex mt-3">
-              <div className="h-12 w-12 rounded-full bg-white"></div>
-              <div className="information ml-4">
-                <p className="detail-info w-4/6">Lorem ipsum dolor sit amet.</p>
-              </div>
-            </div>
           </div>
         </div>
         <div className="infodetails ">

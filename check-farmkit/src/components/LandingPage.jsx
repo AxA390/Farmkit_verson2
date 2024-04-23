@@ -3,7 +3,7 @@ import {
   FaPhone,
   FaInstagram,
   FaTwitter,
-  FaFacebookMessenger,
+  // FaFacebookMessenger,
 } from "react-icons/fa"; //Importing icons
 import { FaFacebook } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
@@ -18,9 +18,27 @@ import image4 from "../Images/Dairy-products.jpg";
 // Array of food categories with respective details
 const foodCategories = [
   { id: 1, title: "FRUITS", image: image1, alt: "Fruits", link: "/fruits" }, // Fruit category with image1 and alt text
-  { id: 2, title: "VEGETABLES", image: image2, alt: "Vegetables" },
-  { id: 3, title: "MEAT PRODUCTS", image: image3, alt: "Meat Products" },
-  { id: 4, title: "DAIRY PRODUCTS", image: image4, alt: "Dairy Products" },
+  {
+    id: 2,
+    title: "VEGETABLES",
+    image: image2,
+    alt: "Vegetables",
+    link: "/fruits",
+  },
+  {
+    id: 3,
+    title: "MEAT PRODUCTS",
+    image: image3,
+    alt: "Meat Products",
+    link: "/fruits",
+  },
+  {
+    id: 4,
+    title: "DAIRY PRODUCTS",
+    image: image4,
+    alt: "Dairy Products",
+    link: "/fruits",
+  },
 ];
 
 // React functional component for the LandingPage
@@ -37,9 +55,9 @@ function LandingPage() {
             From Farmers to Farmers
           </h3>
         </div>
-        <div>
+        {/* <div>
           <FaFacebookMessenger className="text-3xl cursor-pointer" />
-        </div>
+        </div> */}
         <div className="bg-[#6ba809] text-black font-semibold py-3 px-5 rounded-full cursor-pointer hover:bg-[#20730a]">
           <Link to="/login">
             <button>SIGN-IN</button>
