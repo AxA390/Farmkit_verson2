@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from './component/Dashboard'; 
 import ProductDes from './component/Product_des'; 
 import Profile from './component/Profile'; 
+// import Payment from "./component/payment";
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    // <Payment />
   )
 }
 
