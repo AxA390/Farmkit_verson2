@@ -7,6 +7,7 @@ import { IoNotificationsSharp } from "react-icons/io5";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { IoIosSettings } from "react-icons/io";
 import { TiLocation } from "react-icons/ti";
+import { FaCartArrowDown } from "react-icons/fa";
 
 import {
   FaShoppingCart,
@@ -14,29 +15,22 @@ import {
   // FaFacebookMessenger,
   FaUser,
 } from "react-icons/fa";
-import Rating from "@mui/material/Rating";
-import Stack from "@mui/material/Stack";
 
 import appleimg from "../Images/fresh-apple.jpg";
 import { Link } from "react-router-dom";
 
 const farmerDetails = [
   {
-    name: "Mr.Ram Charan",
-    rating: 5,
-    about: [
-      "Lorem ipsum dolor sit amet consectetur adipisicing elits.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-      "Lorem ipsum dolor sit amet.",
-    ],
+    name: "Mr.Ramu",
+
+    about: ["Lorem ipsum dolor sit amet consectetur adipisicing elits."],
     price: "300 per KG",
     location: "Kaloopol, Kathmandu",
     link: "/profile",
   },
   {
     name: "Mr.Ramu ",
-    rating: 5,
+
     about: [
       "Lorem ipsum dolor sit amet consectetur adipisicing elits.",
       "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -48,7 +42,7 @@ const farmerDetails = [
   },
   {
     name: "Mr.Charan",
-    rating: 5,
+
     about: [
       "Lorem ipsum dolor sit amet consectetur adipisicing elits.",
       "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -60,7 +54,7 @@ const farmerDetails = [
   },
   {
     name: "Mr.Hari",
-    rating: 5,
+
     about: [
       "Lorem ipsum dolor sit amet consectetur adipisicing elits.",
       "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -150,6 +144,10 @@ function Apples() {
               className="w-full h-full object-cover object-center"
             />
           </div>
+
+          <div className="product-name">
+            <p className="text-3xl text-center font-poppins font-bold">Apple</p>
+          </div>
         </div>
         <div className="infodetails ">
           <div className=" flex gap-24 justify-center items-center h-24 w-w-6/12 bg-[#acf03d]">
@@ -182,49 +180,47 @@ function Apples() {
 
           {farmerDetails.map((farmer, index) => (
             <div
-              className="Farmers-detail mt-6 border-b border-black pb-3 mb-2 flex gap-24 "
+              className="Farmers-detail mt-6 border-b border-black pb-3 mb-2 flex flex-col items-center"
               key={index}
             >
-              <div className="w-44 h-36 flex items-center justify-center cursor-pointer">
-                <div className="flex flex-col items-center">
+              <div className="top-part flex w-full justify-around items-center">
+                <div className="profile flex items-center justify-center cursor-pointer">
                   <Link to={farmer.link}>
-                    <div className="go-to">
-                      <div className="h-20 w-20 bg-white rounded-full flex items-center justify-center">
-                        <FaUser className="w-14 h-12" />
-                      </div>
-                      <p className="detail-info pt-2">{farmer.name}</p>
+                    <div className="h-20 w-20 bg-white rounded-full flex items-center justify-center">
+                      <FaUser className="w-14 h-12" />
                     </div>
+                    <p className="pt-2 text-center">{farmer.name}</p>
                   </Link>
-                  <div className="info-rating">
-                    <Stack spacing={1}>
-                      <Rating
-                        name="half-rating"
-                        defaultValue={2.5}
-                        precision={0.5}
-                      />
-                    </Stack>
+                </div>
+                <div className="about w-2/3 text-center">
+                  {farmer.about.map((paragraph, index) => (
+                    <p key={index} className="mb-2">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+                <div className="price-location flex flex-col items-center">
+                  <div className="price w-40 h-9 text-2xl font-extrabold bg-[#9ded1b] rounded-lg flex items-center justify-center">
+                    {farmer.price}
+                  </div>
+                  <div
+                    className="location flex items-center mt-2"
+                    style={{ minWidth: "150px", whiteSpace: "nowrap" }}
+                  >
+                    <span>{farmer.location}</span>
+                    <TiLocation
+                      style={{ marginLeft: "8px", fontSize: "1.5rem" }}
+                    />
                   </div>
                 </div>
               </div>
-              <div className="w-2/3 whitespace-nowrap overflow-visible overflow-ellipsis ">
-                {farmer.about.map((paragraph, index) => (
-                  <p
-                    key={index}
-                    className="detail-info w-36 h-4 pt-6 text-base "
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-              <div className="location-price ml-44">
-                <div className="price w-40 h-9 text-2xl font-extrabold bg-[#9ded1b] rounded-lg flex items-center justify-center mt-4">
-                  {farmer.price}
-                </div>
-                <div className="text-sm font-semibold mt-6 flex items-center">
-                  <span>{farmer.location}</span>
-                  <TiLocation />
-                </div>
-              </div>
+              <button className="bg-green-500 hover:bg-green-800 text-black hover:text-white font-bold py-2 px-8 rounded-lg shadow-lg flex items-center justify-center space-x-2 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50 transition duration-300 ease-in-out">
+                <span className="flex items-center">
+                  <FaCartArrowDown className="mr-2" />
+
+                  <span>Add to Cart</span>
+                </span>
+              </button>
             </div>
           ))}
         </div>

@@ -6,7 +6,7 @@ import Profile from "./components/Profile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Importing necessary components from react-router-dom
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-
+// import Yourcart from "./components/Yourcart";
 // Main App component
 const App = () => {
   return (
@@ -28,6 +28,8 @@ const App = () => {
         </Routes>
       </div>
     </Router>
+
+    // <Yourcart />
   );
 };
 
