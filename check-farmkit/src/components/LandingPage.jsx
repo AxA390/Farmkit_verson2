@@ -23,21 +23,21 @@ const foodCategories = [
     title: "VEGETABLES",
     image: image2,
     alt: "Vegetables",
-    link: "/fruits",
+    link: "/vegetables",
   },
   {
     id: 3,
     title: "MEAT PRODUCTS",
     image: image3,
     alt: "Meat Products",
-    link: "/fruits",
+    link: "/meat",
   },
   {
     id: 4,
     title: "DAIRY PRODUCTS",
     image: image4,
     alt: "Dairy Products",
-    link: "/fruits",
+    link: "/dairy",
   },
 ];
 

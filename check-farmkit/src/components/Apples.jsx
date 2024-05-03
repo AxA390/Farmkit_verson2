@@ -118,8 +118,10 @@ function Apples() {
             </Link>
           </div>
           <div className="vegetable flex items-center">
-            <h3>VEGETABLES</h3>
-            <FaAngleDown />
+            <Link to="/vegetables">
+              <h3>VEGETABLES</h3>
+              <FaAngleDown />
+            </Link>
           </div>
           <div className="meat flex items-center">
             <h3>MEAT PRODUCTS</h3>

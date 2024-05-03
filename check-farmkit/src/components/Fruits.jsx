@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { AiFillHome } from "react-icons/ai";
 import { IoNotificationsSharp } from "react-icons/io5";
@@ -12,42 +13,41 @@ import {
   FaChevronRight,
   // FaFacebookMessenger,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
-
-//Importing images from the specified path
-import Trendimg from "../Images/Watermelon.png";
+// Importing images from the specified path
+import watermelon from "../Images/Watermelon.png";
 import apple from "../Images/fresh-apple.jpg";
 import mango from "../Images/fresh-mango.jpg";
 import strawberry from "../Images/fresh-strawberry.jpg";
-import banana from "../Images/fresh-banana.jpg";
-import grapes from "../Images/grapes.png";
-import orange from "../Images/orange.png";
 
-// Define an array of trending products with their IDs, names, and images
-const trendingProducts = [{ id: 1, name: "Watermelon", image: Trendimg }];
+// Array of trending products
+const trendingProducts = [
+  { id: 1, name: "Watermelon", image: watermelon },
+  { id: 2, name: "Apple", image: apple },
+  { id: 3, name: "Mango", image: mango },
+];
 
 // Define an array of food categories with their IDs, images, and alternative texts
 const foodCategories = [
   { id: 1, image: apple, alt: "apple", link: "/apples" },
-  { id: 2, image: banana, alt: "banana" },
-  { id: 3, image: mango, alt: "mango" },
-  { id: 4, image: mango, alt: "mango" },
-  { id: 5, image: strawberry, alt: "strawberry" },
-  { id: 6, image: strawberry, alt: "strawberry" },
-  { id: 7, image: grapes, alt: "grapes" },
-  { id: 7, image: grapes, alt: "grapes" },
-  { id: 7, image: grapes, alt: "grapes" },
-  { id: 7, image: grapes, alt: "grapes" },
-  { id: 7, image: grapes, alt: "grapes" },
-  { id: 7, image: grapes, alt: "grapes" },
-  { id: 7, image: grapes, alt: "grapes" },
-  { id: 7, image: grapes, alt: "grapes" },
-  { id: 7, image: grapes, alt: "grapes" },
-  { id: 7, image: orange, alt: "orange" },
+  { id: 2, image: mango, alt: "mango", link: "/mango" },
+  { id: 3, image: strawberry, alt: "manstrawberrygo", link: "/strawberry" },
 ];
 
 // Functional component for rendering fruits component
 function Fruits() {
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+
+  const changeProduct = (direction) => {
+    if (direction === "prev") {
+      setCurrentProductIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : trendingProducts.length - 1
+      );
+    } else {
+      setCurrentProductIndex((prevIndex) =>
+        prevIndex < trendingProducts.length - 1 ? prevIndex + 1 : 0
+      );
+    }
+  };
   return (
     <div className="bg-[#a2fc0f] min-h-screen w-screen text-black relative flex flex-col">
       <div className="flex justify-between px-5 pl-20 pr-20 cursor-pointer text-4xl mt-8">
@@ -80,7 +80,9 @@ function Fruits() {
           <IoIosSettings />
         </div>
         <div className="shoppingcart">
-          <FaShoppingCart />
+          <Link to="/cart">
+            <FaShoppingCart />
+          </Link>
         </div>
       </div>
 
@@ -90,16 +92,22 @@ function Fruits() {
           <FaAngleDown />
         </div>
         <div className="vegetable flex items-center">
-          <h3>VEGETABLES</h3>
-          <FaAngleDown />
+          <Link to="/vegetables">
+            <h3>VEGETABLES</h3>
+            <FaAngleDown />
+          </Link>
         </div>
         <div className="meat flex items-center">
-          <h3>MEAT PRODUCTS</h3>
-          <FaAngleDown />
+          <Link to="/meat">
+            <h3>MEAT PRODUCTS</h3>
+            <FaAngleDown />
+          </Link>
         </div>
         <div className="diary flex items-center">
-          <h3>DAIRY PRODUCTS</h3>
-          <FaAngleDown />
+          <Link to="/dairy">
+            <h3>DAIRY PRODUCTS</h3>
+            <FaAngleDown />
+          </Link>
         </div>
         {/* <div className="text-3xl">
           <FaFacebookMessenger />
@@ -110,36 +118,37 @@ function Fruits() {
         </div>
       </div>
       {/* Trending Products */}
+      {/* Trending Products */}
       <div className="relative">
-        {trendingProducts.map((product) => (
-          <div key={product.id} className="relative">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="h-80 w-full object-cover object-center"
-            />
-            <div className="absolute top-16 left-0 w-full flex justify-center">
-              <button className="w-64 h-12 bg-red-600 text-white font-extrabold absolute top-0 transform -translate-y-full">
-                Trending Product
-              </button>
-            </div>
-            <div className="absolute bottom-20 left-0 w-full flex justify-center">
-              <button className="w-40 h-12 bg-red-600 text-white font-extrabold absolute bottom-0 transform translate-y-full">
-                Shop Now
-              </button>
-            </div>
+        <div className="relative">
+          <img
+            src={trendingProducts[currentProductIndex].image}
+            alt={trendingProducts[currentProductIndex].name}
+            className="h-80 w-full object-cover object-center"
+          />
+          <div className="absolute top-16 left-0 w-full flex justify-center">
+            <button className="w-64 h-12 bg-red-600 text-white font-extrabold absolute top-0 transform -translate-y-full">
+              Trending Product
+            </button>
           </div>
-        ))}
-        <div className="absolute top-1/2 transform -translate-y-1/2 left-0 h-10 w-8 bg-white ml-4 flex items-center justify-center">
-          <button className="text-2xl">
-            <FaChevronLeft />
-          </button>
+          <div className="absolute bottom-20 left-0 w-full flex justify-center">
+            <button className="w-40 h-12 bg-red-600 text-white font-extrabold absolute bottom-0 transform translate-y-full">
+              Shop Now
+            </button>
+          </div>
         </div>
-        <div className="absolute top-1/2 transform -translate-y-1/2 right-0 ml-2 h-10 w-8 bg-white mr-4 flex items-center justify-center">
-          <button className="text-2xl">
-            <FaChevronRight />
-          </button>
-        </div>
+        <button
+          className="absolute top-1/2 transform -translate-y-1/2 left-0 h-10 w-8 bg-white ml-4 flex items-center justify-center"
+          onClick={() => changeProduct("prev")}
+        >
+          <FaChevronLeft className="text-2xl" />
+        </button>
+        <button
+          className="absolute top-1/2 transform -translate-y-1/2 right-0 ml-2 h-10 w-8 bg-white mr-4 flex items-center justify-center"
+          onClick={() => changeProduct("next")}
+        >
+          <FaChevronRight className="text-2xl" />
+        </button>
       </div>
 
       {/* Food Categories */}
