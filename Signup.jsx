@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import farmkit from "../Images/cover-image.jpg";
 
 export default function Signup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -28,6 +29,7 @@ export default function Signup() {
       console.log(response.data); // Log the response data
       if (response.status === 200) {
         alert("User data saved successfully");
+        navigate('/login')
       }
     } catch (error) {
       console.error("Error signing up:", error);
