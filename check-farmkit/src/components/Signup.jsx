@@ -1,11 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import TextField from "@mui/material/TextField";
-// import { FaRegCircleUser, FaKey } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import farmkit from "../Images/cover-image.jpg";
 
 export default function Signup() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    phone_num: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const validateForm = () => {
+    let errors = {};
+    let isValid = true;
+
+    if (
+      !formData.username ||
+      !/^[a-zA-Z][a-zA-Z0-9]*$/.test(formData.username)
+    ) {
+      errors.username =
+        "Username must start with alphabet and contain only alphanumeric characters.";
+      isValid = false;
+    }
+
+    if (!formData.email || !formData.email.endsWith("@gmail.com")) {
+      errors.email = "Email must be a valid Gmail address.";
+      isValid = false;
+    }
+
+    if (!formData.phone_num || !/^98\d{8}$/.test(formData.phone_num)) {
+      errors.phone_num =
+        "Phone number must start with 98 and be 10 digits long.";
+      isValid = false;
+    }
+
+    if (!formData.password || formData.password !== formData.confirmPassword) {
+      errors.password = "Passwords do not match.";
+      isValid = false;
+    }
+
+    setErrors(errors);
+    return isValid;
+  };
+
+  const handleSignUp = async () => {
+    if (validateForm()) {
+      try {
+        // Your axios post request goes here
+        alert("User data saved successfully");
+        navigate("/login");
+      } catch (error) {
+        console.error("Error signing up:", error);
+        alert("Error signing up");
+      }
+    }
+  };
+
   return (
     <div className="Container flex">
       <div className="main w-1/2 h-screen">
@@ -27,72 +91,93 @@ export default function Signup() {
 
         <div className="input-details mt-10">
           <div className="flex justify-center flex-col items-center gap-5 text-2xl">
-            <div className="Name">
+            <div className="userName">
               <TextField
-                id="standard-search"
-                label="Name"
-                type="search"
+                id="username"
+                name="username"
+                label="Username"
+                type="text"
+                value={formData.username}
+                onChange={handleChange}
                 variant="standard"
-              />
-            </div>
-            <div className="Phone-Num">
-              <TextField
-                id="standard-search"
-                label="Phone Number"
-                type="search"
-                variant="standard"
+                error={!!errors.username}
+                helperText={errors.username}
               />
             </div>
             <div className="Email">
               <TextField
-                id="standard-search"
+                id="email"
+                name="email"
                 label="Email"
-                type="search"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
                 variant="standard"
+                error={!!errors.email}
+                helperText={errors.email}
               />
             </div>
-            <div className="Age">
+            <div className="Phone-Num">
               <TextField
-                id="standard-search"
-                label="Age"
-                type="search"
+                id="phone_num"
+                name="phone_num"
+                label="Phone Number"
+                type="tel"
+                value={formData.phone_num}
+                onChange={handleChange}
                 variant="standard"
-              />
-            </div>
-            <div className="userName">
-              <TextField
-                id="standard-search"
-                label="UserName"
-                type="search"
-                variant="standard"
+                error={!!errors.phone_num}
+                helperText={errors.phone_num}
+                inputProps={{ maxLength: 10 }}
               />
             </div>
             <div className="Password">
               <TextField
-                id="standard-search"
+                id="password"
+                name="password"
                 label="Password"
-                type="search"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
                 variant="standard"
+                error={!!errors.password}
+                helperText={errors.password}
               />
             </div>
             <div className="Password">
               <TextField
-                id="standard-search"
+                id="confirmPassword"
+                name="confirmPassword"
                 label="Confirm Password"
-                type="search"
+                type="password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
                 variant="standard"
+                error={!!errors.password}
+                helperText={errors.password}
               />
             </div>
           </div>
         </div>
         <div className="btns flex flex-col items-center ">
           <div className="mt-12">
-            <Link to="/login">
-              <button className="py-2.5 px-6 border border-green-900 text-green-900 rounded-md hover:bg-green-700 hover:text-white">
-                Create account{" "}
-              </button>
-            </Link>
+            <button
+              className="py-2.5 px-6 border border-green-900 text-green-900 rounded-md hover:bg-green-700 hover:text-white"
+              onClick={handleSignUp}
+            >
+              Create account
+            </button>
           </div>
+
+          <div className="mt-[10px]">
+            <p>
+              Already have an account?{" "}
+              <span className="text-blue-700 cursor-pointer underline">
+                <Link to="/login">Login</Link>
+              </span>
+            </p>
+          </div>
+
           <div className="font-extrabold text-xl mt-3">
             <p>Or</p>
           </div>

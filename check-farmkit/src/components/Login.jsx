@@ -1,11 +1,53 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import axios from 'axios';
 import TextField from "@mui/material/TextField";
 import { FaRegCircleUser, FaKey } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import farmkit from "../Images/cover-image.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { StoreContext } from "../../context/context";
 
 export default function Login() {
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  const { setToken } = useContext(StoreContext)
+  const [username, setUsername] = useState("")
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:8000/login", formData);
+      if (response.status === 200 && response.data.message === "Login successful") {
+        console.log("Login successful");
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        console.log(response.data.token.username)
+        navigate("/", { state: { username: formData.username } });
+      } else {
+        console.log("Invalid username or password");
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.log("Invalid username or password");
+        alert("Invalid username or password");
+      } else {
+        console.error("Error logging in:", error);
+      }
+    }
+  };
+
+
   return (
     <div className="Main-container flex">
       <div className="main w-1/2 h-screen">
@@ -32,9 +74,12 @@ export default function Login() {
             </div>
             <div className="userName">
               <TextField
-                id="standard-search"
+                id="username"
+                name="username"
                 label="UserName"
                 type="search"
+                value={formData.username}
+                onChange={handleChange}
                 variant="standard"
               />
             </div>
@@ -45,9 +90,12 @@ export default function Login() {
             </div>
             <div className="Password">
               <TextField
-                id="standard-search"
+                id="password"
+                name="password"
                 label="Password"
                 type="search"
+                value={formData.password}
+                onChange={handleChange}
                 variant="standard"
               />
             </div>
@@ -55,7 +103,7 @@ export default function Login() {
         </div>
         <div className="btns flex flex-col items-center mt-16">
           <div className="signin">
-            <button className="text-white bg-[#388e3c] border-none py-2.5 px-6 font-semibold rounded-md hover:bg-green-800">
+            <button className="text-white bg-[#388e3c] border-none py-2.5 px-6 font-semibold rounded-md hover:bg-green-800" onClick={handleLogin}>
               Sign In
             </button>
           </div>

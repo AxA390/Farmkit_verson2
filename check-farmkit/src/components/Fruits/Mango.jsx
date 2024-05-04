@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { CiSearch } from "react-icons/ci";
@@ -19,56 +19,63 @@ import {
 import mangoimg from "../../Images/fresh-mango.jpg";
 import { Link } from "react-router-dom";
 
-const farmerDetails = [
-  {
-    name: "Mr.Ramu",
+function Mango() {
+  const [farmerDetails, setFarmerDetails] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
 
-    about: ["Lorem ipsum dolor sit amet consectetur adipisicing elits."],
-    price: "300 per KG",
-    location: "Kaloopol, Kathmandu",
-    link: "/profile",
-  },
-  {
-    name: "Mr.Ramu ",
 
-    about: [
-      "Lorem ipsum dolor sit amet consectetur adipisicing elits.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-      "Lorem ipsum dolor sit amet.",
-    ],
-    price: "300 per KG",
-    location: "Kaloopol, Kathmandu",
-  },
-  {
-    name: "Mr.Charan",
+  useEffect(() => {
+    async function fetchMangoData() {
+      try {
+        const response = await fetch("http://localhost:8000/api/mango");
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        throw new Error("Error fetching apple data:", error);
+      }
+    }
 
-    about: [
-      "Lorem ipsum dolor sit amet consectetur adipisicing elits.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-      "mike check",
-    ],
-    price: "300 per KG",
-    location: "Kaloopol, Kathmandu",
-  },
-  {
-    name: "Mr.Hari",
+    async function fetchData() {
+      try {
+        const data = await fetchMangoData();
+        if (Array.isArray(data)) {
+          setFarmerDetails(data);
+        } else {
+          throw new Error("Data format is incorrect.");
+        }
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-    about: [
-      "Lorem ipsum dolor sit amet consectetur adipisicing elits.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
-      " sit amet.",
-    ],
-    price: "300 per KG",
-    location: "Kaloopol, Kathmandu",
-  },
+    fetchData();
+  }, []);
 
-  // Add more farmer details objects as needed
-];
+  const addToCart = async (product) => {
+    try {
+      const response = await fetch("http://localhost:8000/api/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      });
 
-export default function Mango() {
+      if (!response.ok) {
+        throw new Error("Failed to add item to cart.");
+      }
+
+      const data = await response.json();
+      console.log("Item added to cart:", data);
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+    }
+  };
+
   return (
     <div className="bg-[#a2fc0f] min-h-screen w-screen text-black relative flex flex-col">
       <div className="Heading">
@@ -197,15 +204,13 @@ export default function Mango() {
                     <div className="h-20 w-20 bg-white rounded-full flex items-center justify-center">
                       <FaUser className="w-14 h-12" />
                     </div>
-                    <p className="pt-2 text-center">{farmer.name}</p>
+                    <p className="pt-2 text-center">{farmer.farmer_name}</p>
                   </Link>
                 </div>
                 <div className="about w-2/3 text-center">
-                  {farmer.about.map((paragraph, index) => (
-                    <p key={index} className="mb-2">
-                      {paragraph}
-                    </p>
-                  ))}
+                  {farmer.product_desc && (
+                    <p className="mb-2">{farmer.product_desc}</p>
+                  )}
                 </div>
                 <div className="price-location flex flex-col items-center">
                   <div className="price w-40 h-9 text-2xl font-extrabold bg-[#9ded1b] rounded-lg flex items-center justify-center">
@@ -222,7 +227,8 @@ export default function Mango() {
                   </div>
                 </div>
               </div>
-              <button className="bg-green-500 hover:bg-green-800 text-black hover:text-white font-bold py-2 px-8 rounded-lg shadow-lg flex items-center justify-center space-x-2 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50 transition duration-300 ease-in-out">
+              <button className="bg-green-500 hover:bg-green-800 text-black hover:text-white font-bold py-2 px-8 rounded-lg shadow-lg flex items-center justify-center space-x-2 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50 transition duration-300 ease-in-out"
+              onClick={() => addToCart(farmer)}>
                 <span className="flex items-center">
                   <FaCartArrowDown className="mr-2" />
 
@@ -236,3 +242,5 @@ export default function Mango() {
     </div>
   );
 }
+
+export default Mango;
