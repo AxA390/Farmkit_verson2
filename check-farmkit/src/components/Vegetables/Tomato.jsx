@@ -16,7 +16,7 @@ import {
   FaUser,
 } from "react-icons/fa";
 
-import muttonimg from "../../Images/mutton.jpg";
+import tomatoimg from "../../Images/tomato.jpg";
 import { Link } from "react-router-dom";
 
 const farmerDetails = [
@@ -68,7 +68,7 @@ const farmerDetails = [
   // Add more farmer details objects as needed
 ];
 
-export default function Mutton() {
+export default function Tomato() {
   return (
     <div className="bg-[#a2fc0f] min-h-screen w-screen text-black relative flex flex-col">
       <div className="Heading">
@@ -147,14 +147,14 @@ export default function Mutton() {
         <div className="w-1/4 ml-11">
           <div className="relative w-80 h-96 bg-[#a2fc0f] rounded-2xl shadow text-center transition-transform duration-200 ease-in-out mb-8 overflow-hidden cursor-pointer">
             <img
-              src={muttonimg}
+              src={tomatoimg}
               alt="appleimage"
               className="w-full h-full object-cover object-center"
             />
           </div>
 
           <div className="product-name">
-            <p className="text-3xl text-center font-bold">Mutton</p>
+            <p className="text-3xl text-center font-bold">Tomato</p>
           </div>
         </div>
         <div className="infodetails ">

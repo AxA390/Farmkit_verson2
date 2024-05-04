@@ -16,7 +16,7 @@ import {
   FaUser,
 } from "react-icons/fa";
 
-import mangoimg from "../../Images/mango.png";
+import mangoimg from "../../Images/fresh-mango.jpg";
 import { Link } from "react-router-dom";
 
 const farmerDetails = [
@@ -107,7 +107,9 @@ export default function Mango() {
             <IoIosSettings />
           </div>
           <div className="shoppingcart">
-            <FaShoppingCart />
+            <Link to="/cart">
+              <FaShoppingCart />
+            </Link>
           </div>
         </div>
         <div className="flex justify-evenly items-center font-extrabold py-5 cursor-pointer mt-8">
@@ -124,12 +126,16 @@ export default function Mango() {
             </Link>
           </div>
           <div className="meat flex items-center">
-            <h3>MEAT PRODUCTS</h3>
-            <FaAngleDown />
+            <Link to="/meat">
+              <h3>MEAT PRODUCTS</h3>
+              <FaAngleDown />
+            </Link>
           </div>
           <div className="diary flex items-center">
-            <h3>DAIRY PRODUCTS</h3>
-            <FaAngleDown />
+            <Link to="/dairy">
+              <h3>DAIRY PRODUCTS</h3>
+              <FaAngleDown />
+            </Link>
           </div>
           {/* <div className="text-3xl">
             <FaFacebookMessenger />

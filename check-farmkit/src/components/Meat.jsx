@@ -31,9 +31,9 @@ const trendingProducts = [
 
 // Define an array of food categories with their IDs, images, and alternative texts
 const foodCategories = [
-  { id: 1, image: fish, alt: "fish image" },
-  { id: 2, image: chicken, alt: "chicken image" },
-  { id: 3, image: mutton, alt: "mutton image" },
+  { id: 1, image: fish, alt: "fish image", link: "/fish" },
+  { id: 2, image: chicken, alt: "chicken image", link: "/chicken" },
+  { id: 3, image: mutton, alt: "mutton image", link: "/mutton" },
 ];
 
 // Functional component for rendering fruits component
@@ -83,7 +83,9 @@ function Meat() {
           <IoIosSettings />
         </div>
         <div className="shoppingcart">
-          <FaShoppingCart />
+          <Link to="/cart">
+            <FaShoppingCart />
+          </Link>
         </div>
       </div>
 

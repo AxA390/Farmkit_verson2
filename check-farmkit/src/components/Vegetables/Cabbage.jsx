@@ -126,12 +126,16 @@ export default function Cabbage() {
             </Link>
           </div>
           <div className="meat flex items-center">
-            <h3>MEAT PRODUCTS</h3>
-            <FaAngleDown />
+            <Link to="/meat">
+              <h3>MEAT PRODUCTS</h3>
+              <FaAngleDown />
+            </Link>
           </div>
           <div className="diary flex items-center">
-            <h3>DAIRY PRODUCTS</h3>
-            <FaAngleDown />
+            <Link to="/dairy">
+              <h3>DAIRY PRODUCTS</h3>
+              <FaAngleDown />
+            </Link>
           </div>
           {/* <div className="text-3xl">
             <FaFacebookMessenger />

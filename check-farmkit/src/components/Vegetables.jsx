@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { AiFillHome } from "react-icons/ai";
 import { IoNotificationsSharp } from "react-icons/io5";
@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import Trendimg from "../Images/Watermelon.png";
 import carrot from "../Images/carrot.jpg";
 import cabbage from "../Images/cabbage.jpg";
+import tomato from "../Images/tomato.jpg";
 
 import apple from "../Images/fresh-apple.jpg";
 import mango from "../Images/fresh-mango.jpg";
@@ -31,8 +32,9 @@ const trendingProducts = [
 
 // Define an array of food categories with their IDs, images, and alternative texts
 const foodCategories = [
-  { id: 1, image: carrot, alt: "carrot image" },
-  { id: 2, image: cabbage, alt: "cabbage image" },
+  { id: 1, image: carrot, alt: "carrot image", link: "/carrot" },
+  { id: 2, image: cabbage, alt: "cabbage image", link: "/cabbage" },
+  { id: 2, image: tomato, alt: "tomato image", link: "/tomato" },
 ];
 
 // Functional component for rendering fruits component
@@ -82,7 +84,9 @@ function Vegetables() {
           <IoIosSettings />
         </div>
         <div className="shoppingcart">
-          <FaShoppingCart />
+          <Link to="/cart">
+            <FaShoppingCart />
+          </Link>
         </div>
       </div>
 

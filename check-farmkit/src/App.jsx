@@ -11,6 +11,17 @@ import Vegetables from "./components/Vegetables";
 import Dairy from "./components/Dairy";
 import Meat from "./components/Meat";
 import Mango from "./components/Fruits/Mango";
+import Strawberry from "./components/Fruits/Strawberry";
+import Butter from "./components/Dairy/Butter";
+import Ghee from "./components/Dairy/Ghee";
+import Milk from "./components/Dairy/Milk";
+import Chicken from "./components/Meat/Chicken";
+import Fish from "./components/Meat/Fish";
+import Mutton from "./components/Meat/Mutton";
+import Cabbage from "./components/Vegetables/Cabbage";
+import Carrot from "./components/Vegetables/Carrot";
+import Tomato from "./components/Vegetables/Tomato";
+
 // Main App component
 const App = () => {
   return (
@@ -30,6 +41,16 @@ const App = () => {
           <Route path="/meat" element={<Meat />} />
           <Route path="/apples" element={<Apples />} />
           <Route path="/mango" element={<Mango />} />
+          <Route path="/strawberry" element={<Strawberry />} />
+          <Route path="/butter" element={<Butter />} />
+          <Route path="/ghee" element={<Ghee />} />
+          <Route path="/milk" element={<Milk />} />
+          <Route path="/chicken" element={<Chicken />} />
+          <Route path="/fish" element={<Fish />} />
+          <Route path="/mutton" element={<Mutton />} />
+          <Route path="/cabbage" element={<Cabbage />} />
+          <Route path="/carrot" element={<Carrot />} />
+          <Route path="/tomato" element={<Tomato />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<Yourcart />} />
           <Route path="/login" element={<Login />} />
