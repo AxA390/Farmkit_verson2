@@ -118,16 +118,22 @@ function Apples() {
             </Link>
           </div>
           <div className="vegetable flex items-center">
-            <h3>VEGETABLES</h3>
-            <FaAngleDown />
+            <Link to="/vegetables">
+              <h3>VEGETABLES</h3>
+              <FaAngleDown />
+            </Link>
           </div>
           <div className="meat flex items-center">
-            <h3>MEAT PRODUCTS</h3>
-            <FaAngleDown />
+            <Link to="/meat">
+              <h3>MEAT PRODUCTS</h3>
+              <FaAngleDown />
+            </Link>
           </div>
           <div className="diary flex items-center">
-            <h3>DAIRY PRODUCTS</h3>
-            <FaAngleDown />
+            <Link to="/dairy">
+              <h3>DAIRY PRODUCTS</h3>
+              <FaAngleDown />
+            </Link>
           </div>
           {/* <div className="text-3xl">
             <FaFacebookMessenger />
@@ -146,7 +152,7 @@ function Apples() {
           </div>
 
           <div className="product-name">
-            <p className="text-3xl text-center font-poppins font-bold">Apple</p>
+            <p className="text-3xl text-center font-bold">Apple</p>
           </div>
         </div>
         <div className="infodetails ">
