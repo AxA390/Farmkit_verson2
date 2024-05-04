@@ -16,14 +16,25 @@ import {
 // Importing images from the specified path
 import watermelon from "../Images/Watermelon.png";
 import apple from "../Images/fresh-apple.jpg";
-import mango from "../Images/fresh-mango.jpg";
 import strawberry from "../Images/fresh-strawberry.jpg";
+import mango from "../Images/fresh-mango.jpg";
+
+import trendguava from "../Images/trendguava.jpg";
+import trendonion from "../Images/trendonion.jpg";
+import trendchicken from "../Images/trendchicken.jpg";
+import trendorange from "../Images/trendorange.jpg";
+import trendfish from "../Images/trendfish.jpg";
+import trendpea from "../Images/trendpea.jpg";
 
 // Array of trending products
 const trendingProducts = [
   { id: 1, name: "Watermelon", image: watermelon },
-  { id: 2, name: "Apple", image: apple },
-  { id: 3, name: "Mango", image: mango },
+  { id: 2, name: "Guava", image: trendguava },
+  { id: 3, name: "Onion", image: trendonion },
+  { id: 4, name: "Chicken", image: trendchicken },
+  { id: 5, name: "Orange", image: trendorange },
+  { id: 6, name: "Fish", image: trendfish },
+  { id: 7, name: "Pea", image: trendpea },
 ];
 
 // Define an array of food categories with their IDs, images, and alternative texts

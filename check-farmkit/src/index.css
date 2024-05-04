@@ -64,3 +64,19 @@
   height: 221px;
   object-fit: cover;
 }
+tbody {
+  display: block; /* This changes the tbody from table-row-group to block which allows height control */
+  max-height: 15rem;
+  overflow-y: auto;
+}
+
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* This keeps the columns lined up */
+}
+
+table {
+  width: 100%;
+}
