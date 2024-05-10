@@ -1,8 +1,9 @@
 import React from "react";
-import mango from "../Images/fresh-mango.jpg"; // Ensure this path correctly points to your image file.
+import mango from "../Images/fresh-mango.jpg";
 import { FaCartArrowDown } from "react-icons/fa6";
 import { FaHistory } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export default function UserProfile() {
   return (
@@ -19,10 +20,12 @@ export default function UserProfile() {
           <nav className="mt-4">
             <ul className="space-y-2">
               <li className="flex items-center">
-                <FaCartArrowDown className="mr-2" />
-                <button className="text-blue-600 hover:text-blue-800">
-                  Your Cart
-                </button>
+                <Link to="/cart">
+                  <FaCartArrowDown className="mr-2" />
+                  <button className="text-blue-600 hover:text-blue-800">
+                    Your Cart
+                  </button>
+                </Link>
               </li>
               <li className="flex items-center">
                 <FaHistory className="mr-2" />

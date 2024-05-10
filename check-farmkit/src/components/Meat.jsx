@@ -4,6 +4,7 @@ import { AiFillHome } from "react-icons/ai";
 import { IoNotificationsSharp } from "react-icons/io5";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { IoIosSettings } from "react-icons/io";
+import ConnectWithUs from "./ConnectWithUs";
 import {
   FaShoppingCart,
   FaAngleDown,
@@ -180,6 +181,7 @@ function Meat() {
           </Link>
         ))}
       </div>
+      <ConnectWithUs />
     </div>
   );
 }

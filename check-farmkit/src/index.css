@@ -80,3 +80,32 @@ tbody tr {
 table {
   width: 100%;
 }
+
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.category-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.search-bar input {
+  margin-right: 0.5rem;
+}
+

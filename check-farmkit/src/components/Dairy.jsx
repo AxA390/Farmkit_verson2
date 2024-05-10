@@ -13,6 +13,7 @@ import {
   // FaFacebookMessenger,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ConnectWithUs from "./ConnectWithUs";
 
 //Importing images from the specified path
 import milk from "../Images/milk.jpg";
@@ -180,6 +181,7 @@ function Dairy() {
           </Link>
         ))}
       </div>
+      <ConnectWithUs />
     </div>
   );
 }
