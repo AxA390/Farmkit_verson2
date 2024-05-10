@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  FaPhone,
-  FaInstagram,
-  FaTwitter,
-  // FaFacebookMessenger,
-} from "react-icons/fa";
+//Imported icons
+import { FaPhone, FaInstagram, FaTwitter } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
