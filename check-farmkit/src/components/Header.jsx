@@ -5,6 +5,7 @@ import { IoNotificationsSharp } from "react-icons/io5";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { IoIosSettings } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Header() {
   const cartItemCount = 3;
@@ -21,14 +22,18 @@ function Header() {
             From Farmers to Farmers
           </h3>
         </div>
-        <button className="bg-red-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full">
-          SIGN IN
-        </button>
+        <Link to="/signup">
+          <button className="bg-red-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-full">
+            SIGN IN
+          </button>
+        </Link>
       </header>
       <div className="flex justify-between items-center px-20 py-[14px] shadow-xl">
-        <div className="cursor-pointer text-4xl ml-[90px]">
-          <AiFillHome />
-        </div>
+        <Link to="/">
+          <div className="cursor-pointer text-4xl ml-[90px]">
+            <AiFillHome />
+          </div>
+        </Link>
         <div className="flex items-center">
           <input
             type="text"
@@ -39,32 +44,44 @@ function Header() {
         </div>
         <div className="flex space-x-4 cursor-pointer text-4xl">
           <IoNotificationsSharp style={{ marginRight: "86px" }} />
-          <div className="relative">
-            <FaShoppingCart />
-            <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-red-600 text-white rounded-full px-2 text-xs">
-              {cartItemCount}
-            </span>
-          </div>
+          <Link to="/cart">
+            <div className="relative">
+              <FaShoppingCart />
+              <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-red-600 text-white rounded-full px-2 text-xs">
+                {cartItemCount}
+              </span>
+            </div>
+          </Link>
           <IoIosSettings style={{ marginLeft: "86px" }} />
         </div>
       </div>
       <div className="flex justify-between items-center bg-[#F4ECEC] py-3 px-20 text-black mx-10 rounded-bl-[50px] rounded-br-[50px] shadow-lg">
-        <div className="flex items-center cursor-pointer space-x-1">
-          <h3 className="text-[#6D8AF3]">FRUITS</h3>
-          <MdOutlineArrowDropDown className="text-3xl" />
-        </div>
-        <div className="flex items-center cursor-pointer space-x-1">
-          <h3>VEGETABLES</h3>
-          <MdOutlineArrowDropDown className="text-3xl" />
-        </div>
-        <div className="flex items-center cursor-pointer space-x-1">
-          <h3>MEAT PRODUCTS</h3>
-          <MdOutlineArrowDropDown className="text-3xl" />
-        </div>
-        <div className="flex items-center cursor-pointer space-x-1">
-          <h3>DAIRY PRODUCTS</h3>
-          <MdOutlineArrowDropDown className="text-3xl" />
-        </div>
+        <Link to="/fruits">
+          <div className="flex items-center cursor-pointer space-x-1">
+            <h3 className="text-[#6D8AF3]">FRUITS</h3>
+            <MdOutlineArrowDropDown className="text-3xl" />
+          </div>
+        </Link>
+        <Link to="/vegetables">
+          <div className="flex items-center cursor-pointer space-x-1">
+            <h3>VEGETABLES</h3>
+            <MdOutlineArrowDropDown className="text-3xl" />
+          </div>
+        </Link>
+
+        <Link to="/meat">
+          <div className="flex items-center cursor-pointer space-x-1">
+            <h3>MEAT PRODUCTS</h3>
+            <MdOutlineArrowDropDown className="text-3xl" />
+          </div>
+        </Link>
+
+        <Link to="/dairy">
+          <div className="flex items-center cursor-pointer space-x-1">
+            <h3>DAIRY PRODUCTS</h3>
+            <MdOutlineArrowDropDown className="text-3xl" />
+          </div>
+        </Link>
       </div>
     </div>
   );

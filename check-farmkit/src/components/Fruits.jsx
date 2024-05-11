@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
 import watermelon from "../Images/Watermelon.png";
 import apple from "../Images/fresh-apple.jpg";
 import strawberry from "../Images/fresh-strawberry.jpg";

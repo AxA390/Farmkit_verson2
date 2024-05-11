@@ -23,10 +23,10 @@ export default function YourCart() {
       <Header />
 
       <div className="flex justify-center ">
-        <div className="mr-[300px] mt-[24px] cursor-pointer text-xl font-semibold">
+        {/* <div className="mr-[300px] mt-[24px] cursor-pointer text-xl font-semibold">
           <IoArrowBack />
           <p>Back</p>
-        </div>
+        </div> */}
         <div className="cart text-3xl font-bold">
           <h1 className="flex items-center mt-[32px] ">
             <MdShoppingCart className="mr-2" />
