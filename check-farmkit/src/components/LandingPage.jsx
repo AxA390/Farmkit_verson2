@@ -177,7 +177,7 @@ function LandingPage() {
         </div>
       </div> */}
 
-      <div class="bg-white p-10 max-w-6xl mx-auto rounded-lg shadow-lg mt-10 flex flex-col space-y-8 mb-[10px]">
+      <div class="bg-white p-10 max-w-7xl mx-auto rounded-lg shadow-lg mt-10 flex flex-col space-y-8 mb-[10px]">
         <h1 class="text-5xl font-semibold mb-2">About Us</h1>
         <p class="text-xl leading-relaxed text-gray-800">
           FarmKit connects farmers directly with consumers, offering a diverse
