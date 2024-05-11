@@ -27,6 +27,7 @@ import Tomato from "./components/Vegetables/Tomato";
 // import ConnectWithUs from "./components/ConnectWithUs";
 // import Header from "./components/Header";
 // import Footer from "./components/Footer";
+// import AdminPanel from "./components/AdminPanel";
 
 // Main App component
 const App = () => {
@@ -66,6 +67,8 @@ const App = () => {
         </Routes>
       </div>
     </Router>
+
+    // <AdminPanel />
   );
 };
 
