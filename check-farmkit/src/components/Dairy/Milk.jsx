@@ -1,18 +1,12 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import { CiSearch } from "react-icons/ci";
-import { AiFillHome } from "react-icons/ai";
-import { IoNotificationsSharp } from "react-icons/io5";
-import { FaArrowTrendUp } from "react-icons/fa6";
-import { IoIosSettings } from "react-icons/io";
 import { TiLocation } from "react-icons/ti";
 import { FaCartArrowDown } from "react-icons/fa";
-import ConnectWithUs from "../ConnectWithUs";
+import Header from "../Header";
+import Footer from "../Footer";
 
 import {
-  FaShoppingCart,
-  FaAngleDown,
   // FaFacebookMessenger,
   FaUser,
 } from "react-icons/fa";
@@ -71,78 +65,8 @@ const farmerDetails = [
 
 export default function Milk() {
   return (
-    <div className="bg-[#a2fc0f] min-h-screen w-screen text-black relative flex flex-col">
-      <div className="Heading">
-        <div className="mt-2.5">
-          <h1 className="font-extrabold text-3xl text-center">
-            Product Description
-          </h1>
-        </div>
-        <div className="flex justify-between px-24 text-3xl mt-10 relative">
-          <div className="home">
-            <Link to="/">
-              <AiFillHome />
-            </Link>
-          </div>
-          <div className="flex items-center w-96">
-            <button
-              type="submit"
-              className="w-12 h-16 bg-[#dbff00] rounded-l-full rounded-r-none border-none outline-none cursor-pointer z-10 flex items-center justify-center"
-            >
-              <CiSearch className="h-6 w-6" />
-            </button>
-            <input
-              type="text"
-              placeholder="Search"
-              name="search"
-              className="w-full h-16 border-none outline-none rounded-r-full rounded-l-none px-2.5 text-base bg-[#dbff00]"
-            />
-          </div>
-          <div className="notification">
-            <IoNotificationsSharp />
-          </div>
-          <div className="trending">
-            <FaArrowTrendUp />
-          </div>
-          <div className="setting">
-            <IoIosSettings />
-          </div>
-          <div className="shoppingcart">
-            <Link to="/cart">
-              <FaShoppingCart />
-            </Link>
-          </div>
-        </div>
-        <div className="flex justify-evenly items-center font-extrabold py-5 cursor-pointer mt-8">
-          <div className="fruits flex items-center">
-            <Link to="/fruits">
-              <h3>FRUITS</h3>
-              <FaAngleDown />
-            </Link>
-          </div>
-          <div className="vegetable flex items-center">
-            <Link to="/vegetables">
-              <h3>VEGETABLES</h3>
-              <FaAngleDown />
-            </Link>
-          </div>
-          <div className="meat flex items-center">
-            <Link to="/meat">
-              <h3>MEAT PRODUCTS</h3>
-              <FaAngleDown />
-            </Link>
-          </div>
-          <div className="diary flex items-center">
-            <Link to="/dairy">
-              <h3>DAIRY PRODUCTS</h3>
-              <FaAngleDown />
-            </Link>
-          </div>
-          {/* <div className="text-3xl">
-            <FaFacebookMessenger />
-          </div> */}
-        </div>
-      </div>
+    <div className="Container">
+      <Header />
 
       <div className="flex justify-around mt-5 mx-11">
         <div className="w-1/4 ml-11">
@@ -234,7 +158,7 @@ export default function Milk() {
           ))}
         </div>
       </div>
-      <ConnectWithUs />
+      <Footer />
     </div>
   );
 }
