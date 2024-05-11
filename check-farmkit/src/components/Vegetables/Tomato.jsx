@@ -8,6 +8,7 @@ import { FaArrowTrendUp } from "react-icons/fa6";
 import { IoIosSettings } from "react-icons/io";
 import { TiLocation } from "react-icons/ti";
 import { FaCartArrowDown } from "react-icons/fa";
+import ConnectWithUs from "../ConnectWithUs";
 
 import {
   FaShoppingCart,
@@ -233,6 +234,7 @@ export default function Tomato() {
           ))}
         </div>
       </div>
+      <ConnectWithUs />
     </div>
   );
 }

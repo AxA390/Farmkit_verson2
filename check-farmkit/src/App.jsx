@@ -22,6 +22,12 @@ import Cabbage from "./components/Vegetables/Cabbage";
 import Carrot from "./components/Vegetables/Carrot";
 import Tomato from "./components/Vegetables/Tomato";
 
+// import UserProfile from "./components/UserProfile";
+// import OrderHistory from "./components/OrderHistory";
+// import ConnectWithUs from "./components/ConnectWithUs";
+// import Header from "./components/Header";
+// import Footer from "./components/Footer";
+
 // Main App component
 const App = () => {
   return (
@@ -55,11 +61,11 @@ const App = () => {
           <Route path="/cart" element={<Yourcart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/history" element={<OrderHistory />} />
+          <Route path="/userprofile" element={<UserProfile />} /> */}
         </Routes>
       </div>
     </Router>
-
-    // <Yourcart />
   );
 };
 

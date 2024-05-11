@@ -51,14 +51,7 @@ export default function Signup() {
                 variant="standard"
               />
             </div>
-            <div className="Age">
-              <TextField
-                id="standard-search"
-                label="Age"
-                type="search"
-                variant="standard"
-              />
-            </div>
+
             <div className="userName">
               <TextField
                 id="standard-search"
@@ -92,6 +85,14 @@ export default function Signup() {
                 Create account{" "}
               </button>
             </Link>
+          </div>
+          <div className="mt-[10px]">
+            <p>
+              Already have an account?{" "}
+              <span className="text-blue-700 cursor-pointer underline">
+                <Link to="/login">Login</Link>
+              </span>
+            </p>
           </div>
           <div className="font-extrabold text-xl mt-3">
             <p>Or</p>
