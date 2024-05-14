@@ -1,20 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import { FaHistory } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import {
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Checkbox,
+} from "@mui/material";
 
+function createData(products) {
+  return { id: Math.random(), products };
+}
+
+function createProduct(productName, quantity, price) {
+  return { productName, quantity, price, id: Math.random() };
+}
 const OrderHistory = () => {
-  const orders = [
-    { id: 1, productName: "Apple", quantity: 2, price: "$1.50" },
-    { id: 2, productName: "Orange", quantity: 3, price: "$2.00" },
-    { id: 3, productName: "Orange", quantity: 3, price: "$2.00" },
-    { id: 4, productName: "Orange", quantity: 3, price: "$2.00" },
-    { id: 5, productName: "Banana", quantity: 2, price: "$1.20" },
-    { id: 6, productName: "Grapes", quantity: 1, price: "$3.00" },
-    { id: 7, productName: "Grapes", quantity: 1, price: "$3.00" },
-    { id: 8, productName: "Grapes", quantity: 1, price: "$3.00" },
-    { id: 8, productName: "Grapes", quantity: 1, price: "$3.00" },
-    { id: 8, productName: "Grapes", quantity: 1, price: "$3.00" },
-  ];
+  const [rows, setRows] = useState([
+    createData([
+      createProduct("Apple", 3, "$1.50"),
+      createProduct("Banana", 5, "$1.50"),
+    ]),
+    createData([
+      createProduct("Grapes", 1, "$1.50"),
+      createProduct("Orange", 2, "$2.00"),
+    ]),
+    // More rows can be added as needed
+  ]);
+  const [selected, setSelected] = useState([]);
+  const [showCheckboxes, setShowCheckboxes] = useState(false);
+
+  const handleToggleCheckbox = (rowId, productId) => {
+    setRows((prevRows) =>
+      prevRows.map((row) => {
+        if (row.id === rowId) {
+          return {
+            ...row,
+            products: row.products.map((product) =>
+              product.id === productId
+                ? { ...product, selected: !product.selected }
+                : product
+            ),
+          };
+        }
+        return row;
+      })
+    );
+  };
+
+  const handleDeleteSelectedProducts = () => {
+    setRows((prevRows) =>
+      prevRows
+        .map((row) => ({
+          ...row,
+          products: row.products.filter((product) => !product.selected),
+        }))
+        .filter((row) => row.products.length > 0)
+    ); // Optionally remove empty rows
+  };
 
   return (
     <div className="container mx-auto mt-10 flex flex-col items-center">
@@ -22,33 +71,74 @@ const OrderHistory = () => {
         <FaHistory className="text-3xl mr-2" />
         Order History
       </h1>
-      <div className="relative shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left text-gray-500">
-          <thead className="sticky top-0 text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-              <th className="px-6 py-3">S.n</th>
-              <th className="px-6 py-3">Product Name</th>
-              <th className="px-6 py-3">Quantity</th>
-              <th className="px-6 py-3">Price</th>
-            </tr>
-          </thead>
-          <tbody className="max-h-60 overflow-y-auto">
-            {orders.map((order) => (
-              <tr key={order.id} className="bg-white border-b">
-                <td className="px-6 py-4">{order.id}</td>
-                <td className="px-6 py-4">{order.productName}</td>
-                <td className="px-6 py-4">{order.quantity}</td>
-                <td className="px-6 py-4">{order.price}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="main-content p-5 w-full">
+        <TableContainer
+          component={Paper}
+          style={{ maxHeight: "530px", overflow: "auto" }}
+        >
+          <Table sx={{ minWidth: 650 }} stickyHeader aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                {showCheckboxes && <TableCell padding="checkbox"></TableCell>}
+                <TableCell>S.N</TableCell>
+                <TableCell>Product Name</TableCell>
+                <TableCell align="right">Quantity</TableCell>
+                <TableCell align="right">Price</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row, rowIndex) => (
+                <TableRow key={row.id}>
+                  <TableCell component="th" scope="row">
+                    {rowIndex + 1}
+                  </TableCell>
+                  <TableCell>
+                    {row.products.map((product, productIndex) => (
+                      <div key={product.id}>
+                        <Checkbox
+                          checked={product.selected || false}
+                          onChange={() =>
+                            handleToggleCheckbox(row.id, product.id)
+                          }
+                        />
+                        {product.productName}
+                      </div>
+                    ))}
+                  </TableCell>
+                  <TableCell align="right">
+                    {row.products.map((product) => (
+                      <div key={product.id}>{product.quantity}</div>
+                    ))}
+                  </TableCell>
+                  <TableCell align="right">
+                    {row.products.map((product) => (
+                      <div key={product.id}>{product.price}</div>
+                    ))}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
-
-      <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 flex items-center">
-        <IoMdArrowBack className="mr-2" />
-        Back
-      </button>
+      <div className="btns flex gap-[850px]">
+        <div className="back">
+          <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 flex items-center">
+            <IoMdArrowBack className="mr-2" />
+            Back
+          </button>
+        </div>
+        <div className="delete mt-[17px]">
+          <Button
+            variant="outlined"
+            color="error"
+            onClick={handleDeleteSelectedProducts}
+          >
+            <MdDelete className="mr-2" />
+            Delete Selected
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
