@@ -9,7 +9,7 @@ import Notification from "./Notification";
 
 function Header() {
   const cartItemCount = 3;
-  const notificationItemCount = 3;
+  const cartItnotificationItem = 3;
 
   const [showNotifications, setShowNotifications] = useState(false);
   const notificationRef = useRef(null);
