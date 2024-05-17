@@ -72,7 +72,7 @@ const App = () => {
       </div>
     </Router>
 
-    // <UserProfile />
+    // <OrderHistory />
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
+// import Box from "@mui/material/Box";
+// import Slider from "@mui/material/Slider";
 import { TiLocation } from "react-icons/ti";
 import { FaCartArrowDown } from "react-icons/fa";
 import Header from "../Header";
@@ -95,7 +95,7 @@ export default function Mutton() {
                 />
               </div>
             </div>
-            <div className="progress-bar">
+            {/* <div className="progress-bar">
               <h4 className="font-extrabold">FILTER BY PRICE</h4>
               <div className="slider  border border-black outline-none h-9 w-80 mt-4 rounded-lg pl-4 pt-0.5">
                 <Box sx={{ width: 280 }}>
@@ -108,7 +108,7 @@ export default function Mutton() {
                   />
                 </Box>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {farmerDetails.map((farmer, index) => (

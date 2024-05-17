@@ -1,4 +1,4 @@
-import React from "react"; /// Importing React library to use JSX syntax
+import React from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -19,7 +19,7 @@ import mango from "../Images/fresh-mango.jpg";
 
 // Array of food categories with respective details
 const ProductCategories = [
-  { id: 1, title: "FRUITS", image: image1, alt: "Fruits", link: "/fruits" }, // Fruit category with image1 and alt text
+  { id: 1, title: "FRUITS", image: image1, alt: "Fruits", link: "/fruits" },
   {
     id: 2,
     title: "VEGETABLES",
@@ -95,7 +95,6 @@ function LandingPage() {
       <main className="farmkit-main">
         <div className="flex flex-wrap gap-8 justify-center mb-8 mt-[46px]">
           {" "}
-          {/*iterates over each element in the foodCategories array*/}
           {ProductCategories.map((category) => (
             <Link
               to={category.link}

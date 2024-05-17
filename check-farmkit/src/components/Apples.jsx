@@ -1,6 +1,4 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
 import { TiLocation } from "react-icons/ti";
 import { FaCartArrowDown } from "react-icons/fa";
 import Header from "./Header";
@@ -92,20 +90,6 @@ function Apples() {
                   name="location"
                   className=" border border-black outline-none px-4 py-2.5 h-9 w-80 rounded-lg"
                 />
-              </div>
-            </div>
-            <div className="progress-bar">
-              <h4 className="font-extrabold">FILTER BY PRICE</h4>
-              <div className="slider  border border-black outline-none h-9 w-80 mt-4 rounded-lg pl-4 pt-0.5">
-                <Box sx={{ width: 280 }}>
-                  <Slider
-                    defaultValue={50}
-                    min={0}
-                    max={500}
-                    aria-label="Default"
-                    valueLabelDisplay="auto"
-                  />
-                </Box>
               </div>
             </div>
           </div>

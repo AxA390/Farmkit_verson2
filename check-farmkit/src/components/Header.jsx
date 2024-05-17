@@ -35,7 +35,7 @@ function Header() {
   };
 
   return (
-    <div className="relative">
+    <div className="sticky-container sticky top-0 z-50">
       <header className="bg-[#FFA800] flex justify-between items-center py-2 px-20 shadow-md">
         <div className="heading ml-4">
           <h1 className="italic">
@@ -54,7 +54,7 @@ function Header() {
           </Link>
         </div>
       </header>
-      <div className="flex justify-between items-center px-20 py-2 shadow-xl relative">
+      <div className="bg-white flex justify-between items-center px-20 py-2 shadow-xl relative">
         <Link to="/">
           <div className="cursor-pointer text-4xl ml-[90px]">
             <AiFillHome />
