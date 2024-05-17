@@ -35,7 +35,6 @@ const foodCategories = [
     alt: "carrot",
     link: "/carrot",
     name: "Carrot",
-    price: "Rs 200",
   },
   {
     id: 2,
@@ -43,7 +42,6 @@ const foodCategories = [
     alt: "cabbage",
     link: "/cabbage",
     name: "cabbage",
-    price: "Rs 300",
   },
   {
     id: 3,
@@ -51,7 +49,6 @@ const foodCategories = [
     alt: "tomato",
     link: "/tomato",
     name: "tomato",
-    price: "Rs 150",
   },
 ];
 // Functional component for rendering fruits component

@@ -32,7 +32,6 @@ const foodCategories = [
     alt: "apple",
     link: "/apples",
     name: "Apple",
-    price: "Rs 200",
   },
   {
     id: 2,
@@ -40,7 +39,6 @@ const foodCategories = [
     alt: "mango",
     link: "/mango",
     name: "Mango",
-    price: "Rs 300",
   },
   {
     id: 3,
@@ -48,7 +46,6 @@ const foodCategories = [
     alt: "strawberry",
     link: "/strawberry",
     name: "Strawberry",
-    price: "Rs 150",
   },
 ];
 

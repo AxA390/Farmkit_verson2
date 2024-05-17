@@ -36,7 +36,6 @@ const foodCategories = [
     alt: "milk",
     link: "/milk",
     name: "milk",
-    price: "Rs200",
   },
   {
     id: 2,
@@ -44,7 +43,6 @@ const foodCategories = [
     alt: "ghee",
     link: "/ghee",
     name: "ghee",
-    price: "Rs 700",
   },
   {
     id: 3,
@@ -52,7 +50,6 @@ const foodCategories = [
     alt: "butter",
     link: "/butter",
     name: "butter",
-    price: "Rs 1050",
   },
 ];
 
