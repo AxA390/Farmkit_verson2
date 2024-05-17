@@ -60,7 +60,6 @@ export const userSignup = (req, res) => {
     });
 }
 
-
 export const passwordChange = (req, res) => {
     try {
         const { username, currentPassword, newPassword } = req.body;

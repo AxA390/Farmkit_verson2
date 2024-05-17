@@ -1,5 +1,6 @@
 import pool from "./db.js";
 
+
 export const getUserCartItems = (req, res) => {
     try {
         // Extract email from request body

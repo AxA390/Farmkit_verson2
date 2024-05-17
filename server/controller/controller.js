@@ -1,5 +1,6 @@
 import pool from "./db.js"
 
+
 export const getAllProducts = (req, res) => {
     // Query to fetch product details from the database
     const query = 'SELECT product_name, farmer_name, product_desc AS product_detail, stock, price, location, product_id FROM product_view';
