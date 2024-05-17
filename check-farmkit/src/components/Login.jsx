@@ -8,14 +8,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/context";
 
 export default function Login() {
-  const navigate = useNavigate(); // Initialize useNavigate hook
-
-  const { setToken } = useContext(StoreContext)
-  const [username, setUsername] = useState("")
+  const navigate = useNavigate();
+  const { setToken } = useContext(StoreContext);
+  const [username, setUsername] = useState("");
   const [formData, setFormData] = useState({
     username: "",
     password: ""
   });
+  const [showAlert, setShowAlert] = useState(false); // State to manage alert visibility
+  const [showSuccess, setShowSuccess] = useState(false); // State to manage success visibility
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,23 +31,42 @@ export default function Login() {
       const response = await axios.post("http://localhost:8000/login", formData);
       if (response.status === 200 && response.data.message === "Login successful") {
         console.log("Login successful");
-        setToken(response.data.token);
-        localStorage.setItem("token", response.data.token);
-        console.log(response.data.token.username)
-        navigate("/", { state: { username: formData.username } });
+
+        if (!(formData.username === "admin" && formData.password === "admin")) {
+          localStorage.setItem("username", formData.username);
+          localStorage.setItem("email", response.data.email);
+          localStorage.setItem("password", formData.password);
+          localStorage.setItem("token", response.data.token);
+        }
+
+        setShowSuccess(true);
+        setTimeout(() => {
+          setShowSuccess(false);
+          if (formData.username === "admin" && formData.password === "admin") {
+            navigate("/admin-dashboard");
+          } else {
+            navigate("/");
+          }
+        }, 1000);
       } else {
         console.log("Invalid username or password");
+        setShowAlert(true);
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 1000);
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
         console.log("Invalid username or password");
-        alert("Invalid username or password");
+        setShowAlert(true);
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 1000);
       } else {
         console.error("Error logging in:", error);
       }
     }
   };
-
 
   return (
     <div className="Main-container flex">
@@ -93,7 +113,7 @@ export default function Login() {
                 id="password"
                 name="password"
                 label="Password"
-                type="search"
+                type="password"
                 value={formData.password}
                 onChange={handleChange}
                 variant="standard"
@@ -125,6 +145,24 @@ export default function Login() {
           </div>
         </div>
       </div>
+
+      {/* Alert Popup */}
+      {showAlert && (
+        <div className="fixed top-30 left-0 w-full h-full flex justify-center items-center z-50">
+          <div className="bg-gray-900 bg-opacity-75 p-5 rounded-md text-white">
+            <p>Invalid username or password</p>
+          </div>
+        </div>
+      )}
+
+      {/* Success Popup */}
+      {showSuccess && (
+        <div className="fixed top-30 left-0 w-full h-full flex justify-center items-center z-50">
+          <div className="bg-green-900 bg-opacity-75 p-5 rounded-md text-white">
+            <p>Login successful</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

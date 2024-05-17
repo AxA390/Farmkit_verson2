@@ -87,25 +87,84 @@ export const getAllUsers = (req, res) => {
     });
 }
 
-export const deleteUser = (req, res) => {
-    const userId = req.params.id;
+export const deleteAllCartItems = (req, res) => {
+    try {
+        // Create SQL query to delete all products from the cart
+        const sql = `DELETE FROM cart`;
 
-    // Query to delete the user from the database
-    const query = 'DELETE FROM users WHERE id = ?';
-
-    // Execute the query
-    pool.query(query, userId, (error, results) => {
-        if (error) {
-            console.error('Error deleting user:', error);
-            res.status(500).json({ error: 'Internal server error' });
-        } else {
-            // Check if any rows were affected (user deleted)
-            if (results.affectedRows > 0) {
-                res.status(200).json({ message: 'User deleted successfully' });
-            } else {
-                // If no rows were affected, the user with the specified ID was not found
-                res.status(404).json({ error: 'User not found' });
+        // Execute the query
+        pool.query(sql, (error, results) => {
+            if (error) {
+                console.error('Error deleting all products from cart:', error);
+                res.status(500).json({ error: 'Internal server error.' });
+                return;
             }
+            console.log('All products deleted from cart successfully');
+            res.status(200).json({ message: 'All products deleted from cart successfully.' });
+        });
+    } catch (error) {
+        console.error('Error deleting all products from cart:', error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
+}
+
+
+export const getCartItems = (req, res) => {
+    try {
+        // Create SQL query to fetch all cart items
+        const sql = 'SELECT * FROM cart_items';
+
+        // Execute the query
+        pool.query(sql, (error, results) => {
+            if (error) {
+                console.error('Error fetching cart items:', error);
+                res.status(500).json({ error: 'Internal server error.' });
+                return;
+            }
+            // Send the fetched cart items as a response
+            res.status(200).json(results);
+        });
+    } catch (error) {
+        console.error('Error fetching cart items:', error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
+};
+
+
+
+export const rowCount = (req, res) => {
+    const queryCartItems = 'SELECT COUNT(*) AS cartItemCount FROM cart_items';
+    const queryProductView = 'SELECT COUNT(*) AS productViewCount FROM product_view';
+    const queryUsers = 'SELECT COUNT(*) AS usersCount FROM users';
+
+    pool.query(queryCartItems, (error1, results1) => {
+        if (error1) {
+            console.error('Error executing MySQL query for cart items: ' + error1.message);
+            res.status(500).json({ message: 'Internal server error' });
+            return;
         }
+
+        pool.query(queryProductView, (error2, results2) => {
+            if (error2) {
+                console.error('Error executing MySQL query for product view: ' + error2.message);
+                res.status(500).json({ message: 'Internal server error' });
+                return;
+            }
+
+            pool.query(queryUsers, (error3, results3) => {
+                if (error3) {
+                    console.error('Error executing MySQL query for users: ' + error3.message);
+                    res.status(500).json({ message: 'Internal server error' });
+                    return;
+                }
+
+                // Extract count values from the results
+                const cartItemCount = results1[0].cartItemCount;
+                const productViewCount = results2[0].productViewCount;
+                const usersCount = results3[0].usersCount;
+
+                res.status(200).json({ cartItemCount, productViewCount, usersCount });
+            });
+        });
     });
 }

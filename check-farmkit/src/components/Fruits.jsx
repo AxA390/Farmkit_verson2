@@ -1,39 +1,57 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { CiSearch } from "react-icons/ci";
-import { AiFillHome } from "react-icons/ai";
-import { IoNotificationsSharp } from "react-icons/io5";
-import { FaArrowTrendUp } from "react-icons/fa6";
-import { IoIosSettings } from "react-icons/io";
-import {
-  FaShoppingCart,
-  FaAngleDown,
-  FaPhone,
-  FaChevronLeft,
-  FaChevronRight,
-  // FaFacebookMessenger,
-} from "react-icons/fa";
-// Importing images from the specified path
+import { FaShoppingCart, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import watermelon from "../Images/Watermelon.png";
 import apple from "../Images/fresh-apple.jpg";
-import mango from "../Images/fresh-mango.jpg";
 import strawberry from "../Images/fresh-strawberry.jpg";
+import mango from "../Images/fresh-mango.jpg";
+import trendguava from "../Images/trendguava.jpg";
+import trendonion from "../Images/trendonion.jpg";
+import trendchicken from "../Images/trendchicken.jpg";
+import trendorange from "../Images/trendorange.jpg";
+import trendfish from "../Images/trendfish.jpg";
+import trendpea from "../Images/trendpea.jpg";
 
-// Array of trending products
+import Header from "./Header";
+import Footer from "./Footer";
+
 const trendingProducts = [
   { id: 1, name: "Watermelon", image: watermelon },
-  { id: 2, name: "Apple", image: apple },
-  { id: 3, name: "Mango", image: mango },
+  { id: 2, name: "Guava", image: trendguava },
+  { id: 3, name: "Onion", image: trendonion },
+  { id: 4, name: "Chicken", image: trendchicken },
+  { id: 5, name: "Orange", image: trendorange },
+  { id: 6, name: "Fish", image: trendfish },
+  { id: 7, name: "Pea", image: trendpea },
 ];
 
-// Define an array of food categories with their IDs, images, and alternative texts
 const foodCategories = [
-  { id: 1, image: apple, alt: "apple", link: "/apples" },
-  { id: 2, image: mango, alt: "mango", link: "/mango" },
-  { id: 3, image: strawberry, alt: "manstrawberrygo", link: "/strawberry" },
+  {
+    id: 1,
+    image: apple,
+    alt: "apple",
+    link: "/apples",
+    name: "Apple",
+    price: "Rs 200",
+  },
+  {
+    id: 2,
+    image: mango,
+    alt: "mango",
+    link: "/mango",
+    name: "Mango",
+    price: "Rs 300",
+  },
+  {
+    id: 3,
+    image: strawberry,
+    alt: "strawberry",
+    link: "/strawberry",
+    name: "Strawberry",
+    price: "Rs 150",
+  },
 ];
 
-// Functional component for rendering fruits component
 function Fruits() {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
 
@@ -48,94 +66,25 @@ function Fruits() {
       );
     }
   };
+
   return (
-    <div className="bg-[#a2fc0f] min-h-screen w-screen text-black relative flex flex-col">
-      <div className="flex justify-between px-5 pl-20 pr-20 cursor-pointer text-4xl mt-8">
-        <div className="home">
-          <Link to="/">
-            <AiFillHome />
-          </Link>
-        </div>
-        <div className="flex items-center w-96">
-          <button
-            type="submit"
-            className="w-12 h-16 bg-[#dbff00] rounded-l-full rounded-r-none border-none outline-none cursor-pointer z-10 flex items-center justify-center"
-          >
-            <CiSearch className="h-6 w-6" />
-          </button>
-          <input
-            type="text"
-            placeholder="Search"
-            name="search"
-            className="w-full h-16 border-none outline-none rounded-r-full rounded-l-none px-2.5 text-base bg-[#dbff00]"
-          />
-        </div>
-        <div className="notification">
-          <IoNotificationsSharp />
-        </div>
-        <div className="trending">
-          <FaArrowTrendUp />
-        </div>
-        <div className="setting">
-          <IoIosSettings />
-        </div>
-        <div className="shoppingcart">
-          <Link to="/cart">
-            <FaShoppingCart />
-          </Link>
-        </div>
-      </div>
-
-      <div className="flex justify-evenly items-center font-extrabold py-5 cursor-pointer mt-8">
-        <div className="fruits flex items-center">
-          <h3>FRUITS</h3>
-          <FaAngleDown />
-        </div>
-        <div className="vegetable flex items-center">
-          <Link to="/vegetables">
-            <h3>VEGETABLES</h3>
-            <FaAngleDown />
-          </Link>
-        </div>
-        <div className="meat flex items-center">
-          <Link to="/meat">
-            <h3>MEAT PRODUCTS</h3>
-            <FaAngleDown />
-          </Link>
-        </div>
-        <div className="diary flex items-center">
-          <Link to="/dairy">
-            <h3>DAIRY PRODUCTS</h3>
-            <FaAngleDown />
-          </Link>
-        </div>
-        {/* <div className="text-3xl">
-          <FaFacebookMessenger />
-        </div> */}
-
-        <div className="phone flex items-center">
-          <FaPhone /> <h5 className="pl-4">9800000000</h5>
-        </div>
-      </div>
-      {/* Trending Products */}
-      {/* Trending Products */}
+    <div className="Container">
+      <Header />
       <div className="relative">
-        <div className="relative">
-          <img
-            src={trendingProducts[currentProductIndex].image}
-            alt={trendingProducts[currentProductIndex].name}
-            className="h-80 w-full object-cover object-center"
-          />
-          <div className="absolute top-16 left-0 w-full flex justify-center">
-            <button className="w-64 h-12 bg-red-600 text-white font-extrabold absolute top-0 transform -translate-y-full">
-              Trending Product
-            </button>
-          </div>
-          <div className="absolute bottom-20 left-0 w-full flex justify-center">
-            <button className="w-40 h-12 bg-red-600 text-white font-extrabold absolute bottom-0 transform translate-y-full">
-              Shop Now
-            </button>
-          </div>
+        <img
+          src={trendingProducts[currentProductIndex].image}
+          alt={trendingProducts[currentProductIndex].name}
+          className="h-80 w-full object-cover object-center"
+        />
+        <div className="absolute top-16 left-0 w-full flex justify-center">
+          <button className="w-64 h-12 bg-red-600 text-white font-extrabold absolute top-0 transform -translate-y-full">
+            Trending Product
+          </button>
+        </div>
+        <div className="absolute bottom-20 left-0 w-full flex justify-center">
+          <button className="w-40 h-12 bg-red-600 text-white font-extrabold absolute bottom-0 transform translate-y-full">
+            Shop Now
+          </button>
         </div>
         <button
           className="absolute top-1/2 transform -translate-y-1/2 left-0 h-10 w-8 bg-white ml-4 flex items-center justify-center"
@@ -151,24 +100,35 @@ function Fruits() {
         </button>
       </div>
 
-      {/* Food Categories */}
       <div className="flex flex-wrap gap-4 justify-center mt-5 mx-3 flex-grow">
         {foodCategories.map((category) => (
           <Link
             to={category.link}
-            key={category.id} //
-            className="w-40 h-56 bg-[#a2fc0f] rounded-2xl shadow text-center transition-transform duration-200 ease-in-out mb-8 overflow-hidden ml-2.5 cursor-pointer"
+            key={category.id}
+            className="w-[240px] h-[310px] rounded-lg shadow-lg text-center transition-transform duration-200 ease-in-out mb-8 overflow-hidden ml-2.5 cursor-pointer"
           >
             <div className="card-content">
               <img
                 src={category.image}
                 alt={category.alt}
-                className="w-40 h-56 object-cover"
+                className="w-full h-[184px] object-cover"
               />
+              <div className="bg-white h-[126px] flex flex-col justify-center items-center">
+                <h3 className="text-lg font-semibold">{category.name}</h3>
+                <p className="font-bold">{category.price}</p>
+                <button className="w-[233px] h-[44px] bg-[#FF0000] text-white py-1 px-4 rounded-[20px] mt-2 flex items-center justify-center font-bold text-[15px]">
+                  <FaShoppingCart className="mr-4" />
+                  Add to Cart
+                </button>
+              </div>
             </div>
           </Link>
         ))}
       </div>
+
+      <hr className="my-4 border-black border-opacity-50 border-t-1 mx-[62px]" />
+
+      <Footer />
     </div>
   );
 }

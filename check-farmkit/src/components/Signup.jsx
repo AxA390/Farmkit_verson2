@@ -15,12 +15,64 @@ export default function Signup() {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
+  const [popupMessage, setPopupMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
+    }));
+    validateField(name, value);
+  };
+
+  const validateField = (name, value) => {
+    let error = {};
+    switch (name) {
+      case "username":
+        if (!/^[a-zA-Z][a-zA-Z0-9]*$/.test(value)) {
+          error[name] =
+            "Username must start with an alphabet and contain only alphanumeric characters.";
+        } else {
+          error[name] = "";
+        }
+        break;
+      case "email":
+        if (!/^[\w.%+-]+@gmail\.com$/.test(value)) {
+          error[name] = "Email must be a valid Gmail address.";
+        } else {
+          error[name] = "";
+        }
+        break;
+      case "phone_num":
+        if (!/^(98|97)\d{8}$/.test(value)) {
+          error[name] =
+            "Phone number must start with 98 or 97 and be 10 digits long.";
+        } else {
+          error[name] = "";
+        }
+        break;
+      case "password":
+        if (!/^(?=.*[0-9]).{8,}$/.test(value)) {
+          error[name] =
+            "Password must be at least 8 characters long and contain at least one number.";
+        } else {
+          error[name] = "";
+        }
+        break;
+      case "confirmPassword":
+        if (value !== formData.password) {
+          error[name] = "Passwords do not match.";
+        } else {
+          error[name] = "";
+        }
+        break;
+      default:
+        break;
+    }
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      ...error,
     }));
   };
 
@@ -33,23 +85,32 @@ export default function Signup() {
       !/^[a-zA-Z][a-zA-Z0-9]*$/.test(formData.username)
     ) {
       errors.username =
-        "Username must start with alphabet and contain only alphanumeric characters.";
+        "Username must start with an alphabet and contain only alphanumeric characters.";
       isValid = false;
     }
 
-    if (!formData.email || !formData.email.endsWith("@gmail.com")) {
+    if (!formData.email || !/^[\w.%+-]+@gmail\.com$/.test(formData.email)) {
       errors.email = "Email must be a valid Gmail address.";
       isValid = false;
     }
 
-    if (!formData.phone_num || !/^98\d{8}$/.test(formData.phone_num)) {
+    if (!formData.phone_num || !/^(98|97)\d{8}$/.test(formData.phone_num)) {
       errors.phone_num =
-        "Phone number must start with 98 and be 10 digits long.";
+        "Phone number must start with 98 or 97 and be 10 digits long.";
       isValid = false;
     }
 
-    if (!formData.password || formData.password !== formData.confirmPassword) {
-      errors.password = "Passwords do not match.";
+    if (
+      !formData.password ||
+      !/^(?=.*[0-9]).{8,}$/.test(formData.password)
+    ) {
+      errors.password =
+        "Password must be at least 8 characters long and contain at least one number.";
+      isValid = false;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = "Passwords do not match.";
       isValid = false;
     }
 
@@ -60,14 +121,26 @@ export default function Signup() {
   const handleSignUp = async () => {
     if (validateForm()) {
       try {
-        // Your axios post request goes here
-        alert("User data saved successfully");
-        navigate("/login");
+        const response = await axios.post("http://localhost:8000/signup", formData);
+        if (response.status === 200 && response.data === "User data saved successfully") {
+          showPopupMessage("Account created successfully");
+          setTimeout(() => {
+            navigate("/login");
+          }, 1000);
+        } else {
+          showPopupMessage("Error signing up: " + response.data);
+        }
       } catch (error) {
-        console.error("Error signing up:", error);
-        alert("Error signing up");
+        showPopupMessage("Error signing up: " + error.message);
       }
     }
+  };
+
+  const showPopupMessage = (message) => {
+    setPopupMessage(message);
+    setTimeout(() => {
+      setPopupMessage("");
+    }, 1000);
   };
 
   return (
@@ -77,6 +150,11 @@ export default function Signup() {
       </div>
 
       <div className="container w-1/2">
+        {popupMessage && (
+          <div className="popup-message fixed top-0 left-0 right-0 bg-green-500 text-white text-center py-2 z-50">
+            {popupMessage}
+          </div>
+        )}
         <div className="heading flex flex-col items-center mt-4">
           <h1 className="italic">
             <span className="text-black font-kaushan text-6xl">FARMKIT</span>
@@ -153,8 +231,8 @@ export default function Signup() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 variant="standard"
-                error={!!errors.password}
-                helperText={errors.password}
+                error={!!errors.confirmPassword}
+                helperText={errors.confirmPassword}
               />
             </div>
           </div>
