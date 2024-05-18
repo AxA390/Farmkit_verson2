@@ -31,7 +31,8 @@ const OrderHistory = () => {
       createProduct("Grapes", 1, "$1.50"),
       createProduct("Orange", 2, "$2.00"),
     ]),
-    // More rows can be added as needed
+    createData([createProduct("Mango", 1, "$4.50")]),
+    createData([createProduct("Strawberry", 2, "$3.00")]),
   ]);
   const [selected, setSelected] = useState([]);
   const [showCheckboxes, setShowCheckboxes] = useState(false);

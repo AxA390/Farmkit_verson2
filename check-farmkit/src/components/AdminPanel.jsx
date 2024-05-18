@@ -30,9 +30,6 @@ export default function AdminPanel() {
     createData("AnnaSmith", "Rice 300kg", 900),
     createData("AnnaSh", "Wheat 200kg", 100),
     createData("Tom", "Corn 800kg", 1600),
-    createData("TomBro", "Corn 800kg", 1600),
-    createData("TomBrown", "Corn 800kg", 1600),
-    createData("Dinesh", "Corn 800kg", 1600),
   ]);
 
   const handleVerificationChange = (event, username, productDetails) => {
@@ -61,7 +58,7 @@ export default function AdminPanel() {
         </div>
       </header>
       <div class="flex h-full w-full cursor-pointer">
-        <div class="sidebar bg-[#FFA800] text-white p-5 w-[20%] font-bold text-[20px] flex flex-col items-center">
+        <div class="sidebar bg-[#FFA800] text-white p-5 w-[20%] font-bold text-[20px] flex flex-col items-center h-screen">
           <div class="menu-item mt-10 mb-4 w-full flex items-center justify-start pl-5">
             <MdDashboard class="mr-[22px]" />
             <span>Dashboard</span>

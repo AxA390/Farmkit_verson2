@@ -3,13 +3,15 @@ import { MdShoppingCart } from "react-icons/md";
 import appleimg from "../Images/fresh-apple.jpg";
 import Header from "./Header";
 import Footer from "./Footer";
-import { IoArrowBack } from "react-icons/io5";
+// import { IoArrowBack } from "react-icons/io5";
+import strawberry from "../Images/fresh-strawberry.jpg";
+import mango from "../Images/fresh-mango.jpg";
 
 export default function YourCart() {
   const [items, setItems] = useState([
     { id: 1, name: "Apple", price: 10, image: appleimg },
-    { id: 2, name: "Apple", price: 200, image: appleimg },
-    { id: 3, name: "Apple", price: 40, image: appleimg },
+    { id: 2, name: "strawberry", price: 200, image: strawberry },
+    { id: 3, name: "mango", price: 40, image: mango },
   ]);
 
   const removeItem = (id) => {

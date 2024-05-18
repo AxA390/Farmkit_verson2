@@ -45,8 +45,6 @@ const App = () => {
         {" "}
         {/* Main container for all routes */}
         <Routes>
-          {" "}
-          {/* Routes component for defining different routes */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/fruits" element={<Fruits />} />
           <Route path="/vegetables" element={<Vegetables />} />
@@ -68,13 +66,13 @@ const App = () => {
           <Route path="/cart" element={<Yourcart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          {/* <Route path="/history" element={<OrderHistory />} />
-          <Route path="/userprofile" element={<UserProfile />} /> */}
+          {/* <Route path="/history" element={<OrderHistory />} /> */}
+          {/* <Route path="/userprofile" element={<UserProfile />} /> */}
         </Routes>
       </div>
     </Router>
 
-    // <Notification />
+    // <OrderHistory />
   );
 };
 
