@@ -2,13 +2,14 @@ import pool from "./db.js";
 
 export const getOrderHistory = (req, res) => {
   try {
-    const { username } = req.query; // Destructure username from req.body
-    const sql = 'SELECT products, total_amount, DATE_FORMAT(created_at, "%Y-%m-%d") AS orderDate FROM cart_items WHERE username = ?';
+    const { username } = req.query;
+    const sql = 'SELECT products, total_amount, DATE_FORMAT(created_at, "%d/%m/%y") AS orderDate FROM cart_items WHERE username = ?';
     pool.query(sql, [username], (err, result) => {
       if (err) {
         console.error('Error fetching cart items:', err);
         res.status(500).send('Error fetching cart items');
       } else {
+        console.log('Result from database:', result); // Log the result object
         if (result.length > 0) {
           const cartItems = result.map(row => {
             return {
@@ -28,6 +29,7 @@ export const getOrderHistory = (req, res) => {
     res.status(500).send('Error fetching cart items');
   }
 }
+
 
 export const deleteOrderProducts = (req, res) => {
   const { productId, username } = req.query;
@@ -54,10 +56,28 @@ export const deleteOrderProducts = (req, res) => {
       return;
     }
 
-    const cartItems = JSON.parse(results[0].products);
+    let cartItems;
+    try {
+      cartItems = JSON.parse(results[0].products);
+    } catch (parseError) {
+      console.error('Error parsing cart items: ' + parseError.message);
+      res.status(500).json({ message: 'Internal server error' });
+      return;
+    }
 
-    // Filter out the item with productId
+    if (!Array.isArray(cartItems)) {
+      console.error('Cart items is not an array');
+      res.status(500).json({ message: 'Internal server error' });
+      return;
+    }
+
     const updatedProducts = cartItems.filter(product => product.product_id.toString() !== productId);
+
+    if (updatedProducts.length === cartItems.length) {
+      // No product was deleted
+      res.status(404).json({ message: 'Product not found in cart' });
+      return;
+    }
 
     const updatedProductsJSON = JSON.stringify(updatedProducts);
 
@@ -72,7 +92,7 @@ export const deleteOrderProducts = (req, res) => {
           res.status(500).json({ message: 'Internal server error' });
           return;
         }
-        res.status(200).json({ message: 'Product deleted successfully' });
+        res.status(200).json({ message: 'Product deleted successfully, cart is now empty' });
       });
     } else {
       // Update the products column
@@ -86,7 +106,7 @@ export const deleteOrderProducts = (req, res) => {
       });
     }
   });
-}
+};
 
 
 
