@@ -72,12 +72,14 @@ function Header() {
 
   return (
     <div onClick={handleClickOutside}>
-      <header className="bg-[#FFA800] flex justify-between items-center py-2 px-20 shadow-md">
+      <header className="sticky top-0 z-50 bg-[#FFA800] flex justify-between items-center py-2 px-20 shadow-md">
         <div className="heading ml-[86px]">
-          <Link to="/">          <h1 className="italic">
-            <span className="text-black font-kaushan text-6xl">FARMKIT</span>
-            <span className="text-white font-kaushan text-6xl italic">ORG</span>
-          </h1></Link>
+          <Link to="/">
+            <h1 className="italic">
+              <span className="text-black font-kaushan text-6xl">FARMKIT</span>
+              <span className="text-white font-kaushan text-6xl italic">ORG</span>
+            </h1>
+          </Link>
           <h3 className="text-white font-kaushan text-2xl ml-[150px] italic">
             From Farmers to Farmers
           </h3>
@@ -145,20 +147,12 @@ function Header() {
           )}
         </div>
       </header>
-      <div className="flex justify-between items-center px-20 py-[14px] shadow-xl">
+      <div className="sticky top-[72px] z-40 flex justify-between items-center px-20 py-[14px] shadow-xl bg-white">
         <Link to="/">
           <div className="cursor-pointer text-4xl ml-[90px]">
             <AiFillHome />
           </div>
         </Link>
-        {/* <div className="flex items-center">
-          <input
-            type="text"
-            placeholder="Search"
-            name="search"
-            className="w-96 h-16 border-2 border-black outline-none rounded-full px-4 text-base text-center"
-          />
-        </div> */}
         <div className="flex space-x-4 cursor-pointer text-4xl">
           <div className="relative mr-[86px]">
             <IoNotificationsSharp
@@ -185,27 +179,36 @@ function Header() {
               </span>
             </div>
           </Link>
-          <Link to="/userprofile">          <IoIosSettings style={{ marginLeft: "86px" }} />
+          <Link to="/userprofile">
+            <IoIosSettings style={{ marginLeft: "86px" }} />
           </Link>
         </div>
       </div>
-      <div className="flex justify-between items-center bg-[#F4ECEC] py-3 px-20 text-black mx-10 rounded-bl-[50px] rounded-br-[50px] shadow-lg">
-        <Link to="/fruits">        <div className="flex items-center cursor-pointer space-x-1">
-          <h3 className="text-[#6D8AF3]">FRUITS</h3>
-          <MdOutlineArrowDropDown className="text-3xl" />
-        </div></Link>
-        <Link to="/vegetables">        <div className="flex items-center cursor-pointer space-x-1">
-          <h3>VEGETABLES</h3>
-          <MdOutlineArrowDropDown className="text-3xl" />
-        </div></Link>
-        <Link to="/meat">        <div className="flex items-center cursor-pointer space-x-1">
-          <h3>MEAT PRODUCTS</h3>
-          <MdOutlineArrowDropDown className="text-3xl" />
-        </div></Link>
-        <Link to="/dairy">        <div className="flex items-center cursor-pointer space-x-1">
-          <h3>DAIRY PRODUCTS</h3>
-          <MdOutlineArrowDropDown className="text-3xl" />
-        </div></Link>
+      <div className="sticky top-[120px] z-30 flex justify-between items-center bg-[#F4ECEC] py-3 px-20 text-black mx-10 rounded-bl-[50px] rounded-br-[50px] shadow-lg">
+        <Link to="/fruits">
+          <div className="flex items-center cursor-pointer space-x-1">
+            <h3 className="text-[#6D8AF3]">FRUITS</h3>
+            <MdOutlineArrowDropDown className="text-3xl" />
+          </div>
+        </Link>
+        <Link to="/vegetables">
+          <div className="flex items-center cursor-pointer space-x-1">
+            <h3>VEGETABLES</h3>
+            <MdOutlineArrowDropDown className="text-3xl" />
+          </div>
+        </Link>
+        <Link to="/meat">
+          <div className="flex items-center cursor-pointer space-x-1">
+            <h3>MEAT PRODUCTS</h3>
+            <MdOutlineArrowDropDown className="text-3xl" />
+          </div>
+        </Link>
+        <Link to="/dairy">
+          <div className="flex items-center cursor-pointer space-x-1">
+            <h3>DAIRY PRODUCTS</h3>
+            <MdOutlineArrowDropDown className="text-3xl" />
+          </div>
+        </Link>
       </div>
     </div>
   );

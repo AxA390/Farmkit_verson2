@@ -52,7 +52,6 @@ function LandingPage() {
       alt: "apple",
       link: "/apples",
       name: "Apple",
-      // price: "Rs 200",
     },
     {
       id: 2,
@@ -60,7 +59,6 @@ function LandingPage() {
       alt: "mango",
       link: "/mango",
       name: "Mango",
-      // price: "Rs 300",
     },
     {
       id: 3,
@@ -68,7 +66,6 @@ function LandingPage() {
       alt: "strawberry",
       link: "/strawberry",
       name: "Strawberry",
-      // price: "Rs 150",
     },
   ];
 
